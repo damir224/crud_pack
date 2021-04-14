@@ -11,7 +11,6 @@ import {
   updateCardAC,
 } from '../actions';
 
-// dotenv.config();
 export function* getCardsWorker({ payload }) {
   if (payload === '') return null;
   const url = `${process.env.REACT_APP_URL}posts?order_by=id`;

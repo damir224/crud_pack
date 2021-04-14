@@ -9,8 +9,8 @@ const preloadableState = {
     name: '',
     role: '',
     token: '',
-    isAuth: false
-  }
+    isAuth: false,
+  },
 };
 const userReducers = (state = preloadableState, action) => {
   switch (action.type) {

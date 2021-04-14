@@ -3,7 +3,9 @@
     "airbnb",
     "airbnb/hooks"
   ],
-  "plugins": [],
+  "plugins": [
+    "react"
+  ],
   "parserOptions": {
     "ecmaVersion": 2021,
     "sourceType": "module",
@@ -33,6 +35,19 @@
           "@material-ui/*/*/*"
         ]
       }
-    ]
+    ],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "allowTemplateLiterals": true
+      }
+    ],
+    "jsx-quotes": [2, "prefer-single"],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "react/prop-types": 0
   }
 }

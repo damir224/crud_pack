@@ -5,7 +5,7 @@ import {
   CardActions,
   CardContent,
   Button,
-  Typography
+  Typography,
 } from '@material-ui/core/';
 
 import EditIcon from '@material-ui/icons/Edit';
@@ -13,14 +13,14 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { likeCardSagaAC } from '../store/cards/actions';
 import Like from './Like';
-import { useStylesSumpleCard } from '../helpers/styles';
+import useStyles from '../helpers/styles/useStylesSimpleCard';
 
 export default function SimpleCard({
   card: {
-    id, title, content, liked, total_likes
-  }
+    id, title, content, liked, total_likes,
+  },
 }) {
-  const classes = useStylesSumpleCard();
+  const classes = useStyles();
   const { token, role } = useSelector((state) => state.userReducers.user);
   const dispatch = useDispatch();
 

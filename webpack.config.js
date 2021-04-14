@@ -7,7 +7,6 @@ module.exports = (env = {}) => {
   const isProd = mode === 'production';
   const isDev = mode === 'development';
 
-  const getStyleLoader = () => {};
   const getPlugins = () => {
     const plugins = [
       new HtmlWebpackPlugin({
@@ -47,6 +46,7 @@ module.exports = (env = {}) => {
       contentBase: path.join(__dirname, 'dist'),
       compress: true,
       port: 3000,
+      historyApiFallback: true,
     },
     devtool: 'source-map',
   };

@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import SimpleCard from './SimpleCard';
 import { getCardsSagaAC } from '../store/cards/actions';
-import { useStylesCardList } from '../helpers/styles';
+import useStyles from '../helpers/styles/useStylesCardList';
 
 export default function CardList() {
   const dispatch = useDispatch();
-  const classes = useStylesCardList();
+  const classes = useStyles();
   const { token, role, isAuth } = useSelector(
     (state) => state.userReducers.user
   );

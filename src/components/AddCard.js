@@ -4,12 +4,12 @@ import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { addCardSagaAC } from '../store/cards/actions';
-import { useStylesCard } from '../helpers/styles';
+import useStyles from '../helpers/styles/useStylesCard';
 
 export default function AddCard() {
   const { token } = useSelector((state) => state.userReducers.user);
   const dispatch = useDispatch();
-  const classes = useStylesCard();
+  const classes = useStyles();
   const refDone = React.useRef(false);
   const formik = useFormik({
     initialValues: {

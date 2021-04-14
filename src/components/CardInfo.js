@@ -3,14 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   FormControl,
   TextField,
-  makeStyles,
   Box,
   Button,
 } from '@material-ui/core';
 import { useFormik } from 'formik';
 import { Redirect, useParams } from 'react-router-dom';
 import { updateCardSagaAC, delCardSagaAC } from '../store/cards/actions';
-import { useStylesCard } from '../helpers/styles';
+import useStyles from '../helpers/styles/useStylesCard';
 
 export default function CardInfo() {
   const { id } = useParams();
@@ -20,7 +19,7 @@ export default function CardInfo() {
 
   const cardInfo = cards.filter((e) => +e.id === +id)[0];
   const dispatch = useDispatch();
-  const classes = useStylesCard();
+  const classes = useStyles();
   const formik = useFormik({
     initialValues: {
       title: cardInfo.title,

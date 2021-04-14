@@ -1,5 +1,3 @@
-// import dotenv from 'dotenv';
-
 export default async function uniFetch(...args) {
   // dotenv.config();
   const arr = ['token', 'url', 'method', 'body'];

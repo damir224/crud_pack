@@ -2,11 +2,11 @@ import React from 'react';
 import { AppBar, Toolbar, Typography } from '@material-ui/core/';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useStylesNavBar } from '../helpers/styles';
+import useStyles from '../helpers/styles/useStylesNavBar';
 
 export default function Navbar() {
   const { isAuth } = useSelector((state) => state.userReducers.user);
-  const classes = useStylesNavBar();
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>

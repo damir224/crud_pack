@@ -4,16 +4,16 @@ import { loginAC } from '../actions';
 import uniFetch from '../../../helpers/helper';
 
 export function* signupWorker({ payload }) {
-  const url = `${process.env.REACT_APP_URL}/register`;
-  const urlAuth = `${process.env.REACT_APP_URL}/user`;
+  const url = `${process.env.REACT_APP_URL}register`;
+  const urlAuth = `${process.env.REACT_APP_URL}user`;
   try {
     const response = yield call(uniFetch, null, url, 'POST', payload.obj);
     if (response.success) {
       const { data, success } = yield call(
         uniFetch,
-        payload.data.token,
+        response.data.token,
         urlAuth,
-        'GET'
+        'GET',
       );
       if (success) return yield put(loginAC(data.user, response.data));
     }
@@ -23,8 +23,8 @@ export function* signupWorker({ payload }) {
   }
 }
 export function* loginWorker({ payload }) {
-  const url = `${process.env.REACT_APP_URL}/login`;
-  const urlAuth = `${process.env.REACT_APP_URL}/user`;
+  const url = `${process.env.REACT_APP_URL}login`;
+  const urlAuth = `${process.env.REACT_APP_URL}user`;
   try {
     const response = yield call(uniFetch, null, url, 'POST', payload);
     if (response.success) {
@@ -32,7 +32,7 @@ export function* loginWorker({ payload }) {
         uniFetch,
         response.data.token,
         urlAuth,
-        'GET'
+        'GET',
       );
       if (success) return yield put(loginAC(data.user, response.data));
     }
