@@ -42,6 +42,7 @@ module.exports = (env = {}) => {
     },
     output: {
       path: path.resolve(__dirname, './dist'),
+      publicPath: '/',
       filename: '[name].js',
     },
     plugins: getPlugins(),

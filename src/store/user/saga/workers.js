@@ -13,7 +13,7 @@ export function* signupWorker({ payload }) {
         uniFetch,
         response.data.token,
         urlAuth,
-        'GET',
+        'GET'
       );
       if (success) return yield put(loginAC(data.user, response.data));
     }
@@ -23,6 +23,7 @@ export function* signupWorker({ payload }) {
   }
 }
 export function* loginWorker({ payload }) {
+  console.log(process.env.REACT_APP_URL);
   const url = `${process.env.REACT_APP_URL}login`;
   const urlAuth = `${process.env.REACT_APP_URL}user`;
   try {
@@ -32,7 +33,7 @@ export function* loginWorker({ payload }) {
         uniFetch,
         response.data.token,
         urlAuth,
-        'GET',
+        'GET'
       );
       if (success) return yield put(loginAC(data.user, response.data));
     }
