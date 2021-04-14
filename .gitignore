@@ -5,3 +5,4 @@ dist/
 .DB_Store
 coverage/
 .vscode/
+.idea
