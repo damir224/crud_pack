@@ -13,7 +13,7 @@ export function* signupWorker({ payload }) {
         uniFetch,
         response.data.token,
         urlAuth,
-        'GET'
+        'GET',
       );
       if (success) return yield put(loginAC(data.user, response.data));
     }
@@ -33,7 +33,7 @@ export function* loginWorker({ payload }) {
         uniFetch,
         response.data.token,
         urlAuth,
-        'GET'
+        'GET',
       );
       if (success) return yield put(loginAC(data.user, response.data));
     }
