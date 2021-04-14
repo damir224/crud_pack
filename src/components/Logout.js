@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { logoutAC } from '../store/user/actions';
 
 export default function Logout() {
-  const { isAuth } = useSelector((state) => state.userReducers.user);
+  const { isAuth } = useSelector(({ userReducers }) => userReducers.user);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(logoutAC());

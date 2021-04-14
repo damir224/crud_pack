@@ -1,20 +1,26 @@
 import actionTypes from '../actionTypes';
 
-const preloadableState = {
-  cards: []
+const initialState = {
+  cards: [],
 };
-const cardsReducers = (state = preloadableState, action) => {
+const cardsReducers = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_CARDS:
-      return { ...state, cards: [...action.payload] };
+      return {
+        ...state,
+        cards: [...action.payload],
+      };
     case actionTypes.ADD_CARD:
-      return { ...state, cards: [...state.cards, action.payload.post] };
+      return {
+        ...state,
+        cards: [...state.cards, action.payload.post],
+      };
     case actionTypes.UPDATE_CARD:
       return {
         ...state,
         cards: [
-          ...state.cards.map((e) => (e.id === action.payload.post.id ? action.payload.post : e))
-        ]
+          ...state.cards.map((e) => (e.id === action.payload.post.id ? action.payload.post : e)),
+        ],
       };
     case actionTypes.LIKE_CARD:
       return {
@@ -24,11 +30,11 @@ const cardsReducers = (state = preloadableState, action) => {
             return action.payload;
           }
           return e;
-        })
+        }),
       };
     case actionTypes.DEL_CARD:
       return {
-        ...state
+        ...state,
       };
     default:
       return state;

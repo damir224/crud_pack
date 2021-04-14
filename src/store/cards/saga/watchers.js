@@ -5,7 +5,7 @@ import {
   addCardWorker,
   updateCardWorker,
   delCardWorker,
-  likeCardWorker
+  likeCardWorker,
 } from './workers';
 
 export function* getCardsWatcher() {

@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-export const validationSchemaAuthForm = yup.object({
+const validationSchemaAuthForm = yup.object({
   email: yup.string('Enter your email').email('Enter a valid email'),
   password: yup
     .string('Enter your password')
@@ -15,3 +15,4 @@ export const validationSchemaAuthForm = yup.object({
     .min('1924-05-01', 'Too old!')
     .max('2021-03-01', 'Too young!'),
 });
+export default { validationSchemaAuthForm };

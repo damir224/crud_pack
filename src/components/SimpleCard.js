@@ -6,7 +6,7 @@ import {
   CardContent,
   Button,
   Typography,
-} from '@material-ui/core/';
+} from '@material-ui/core';
 
 import EditIcon from '@material-ui/icons/Edit';
 import { Link } from 'react-router-dom';
@@ -21,7 +21,7 @@ export default function SimpleCard({
   },
 }) {
   const classes = useStyles();
-  const { token, role } = useSelector((state) => state.userReducers.user);
+  const { token, role } = useSelector(({ userReducers }) => userReducers.user);
   const dispatch = useDispatch();
 
   return (
@@ -31,7 +31,7 @@ export default function SimpleCard({
         border: 10,
         borderStyle: 'solid',
         borderRadius: 1,
-        borderWidth: 1
+        borderWidth: 1,
       }}
     >
       <CardContent>

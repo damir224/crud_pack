@@ -1,12 +1,10 @@
 export default async function uniFetch(...args) {
-  // dotenv.config();
   const arr = ['token', 'url', 'method', 'body'];
-  let response = '';
   const fetchObj = {
     headers: {
       'Content-Type': 'application/json',
-      'X-Application-Key': process.env.REACT_APP_KEY
-    }
+      'X-Application-Key': process.env.REACT_APP_KEY,
+    },
   };
   args.map((e, i) => {
     if (e === null || e === '' || i === 1) {
@@ -23,7 +21,6 @@ export default async function uniFetch(...args) {
     fetchObj[arr[i]] = e;
     return fetchObj[arr[i]];
   });
-  response = await fetch(args[1], fetchObj);
-  const returnVal = await response.json();
-  return returnVal;
+  const response = await fetch(args[1], fetchObj);
+  return response.json();
 }

@@ -7,19 +7,16 @@ module.exports = (env = {}) => {
   const isProd = mode === 'production';
   const isDev = mode === 'development';
 
-  const getPlugins = () => {
-    const plugins = [
-      new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, './public/index.html'), // шаблон
-        filename: 'index.html', // название выходного файла
-      }),
-      new Dotenv({
-        path: './.env', // Path to .env file (this is the default)
-        safe: true, // load .env.example (defaults to "false" which does not use dotenv-safe)
-      }),
-    ];
-    return plugins;
-  };
+  const getPlugins = () => [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './public/index.html'), // шаблон
+      filename: 'index.html', // название выходного файла
+    }),
+    new Dotenv({
+      path: './.env', // Path to .env file (this is the default)
+      safe: true, // load .env.example (defaults to "false" which does not use dotenv-safe)
+    }),
+  ];
 
   return {
     mode: isProd ? 'production' : isDev && 'development',
@@ -30,6 +27,14 @@ module.exports = (env = {}) => {
           exclude: /node_modules/,
           use: ['babel-loader'],
         },
+        {
+          test: /\.html$/,
+          use: [
+            {
+              loader: 'html-loader',
+            },
+          ],
+        },
       ],
     },
     entry: {
@@ -38,7 +43,6 @@ module.exports = (env = {}) => {
     output: {
       path: path.resolve(__dirname, './dist'),
       filename: '[name].js',
-      clean: true,
     },
     plugins: getPlugins(),
     devServer: {

@@ -4,10 +4,10 @@ import { Button, TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { signupSagaAC, loginSagaAC } from '../store/user/actions';
-import { validationSchemaAuthForm } from '../helpers/validation';
+import validationSchemaAuthForm from '../helpers/validation';
 
 const AuthForm = ({ type }) => {
-  const isAuth = useSelector((state) => state.userReducers.user.isAuth);
+  const isAuth = useSelector(({ userReducers }) => userReducers.user.isAuth);
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -18,9 +18,18 @@ const AuthForm = ({ type }) => {
       birthdate: '',
     },
     validationSchemaAuthForm,
-    onSubmit: ({ email, password, name, lastName, birthdate }) => {
+    onSubmit: ({
+      email,
+      password,
+      name,
+      lastName,
+      birthdate,
+    }) => {
       if (type === 'login') {
-        dispatch(loginSagaAC({ email, password }));
+        dispatch(loginSagaAC({
+          email,
+          password,
+        }));
       } else {
         dispatch(
           signupSagaAC({
@@ -29,21 +38,21 @@ const AuthForm = ({ type }) => {
             name,
             lastName,
             birthdate,
-          })
+          }),
         );
       }
     },
   });
   return (
-    <div style={{ marginTop: '5em' }}>
-      {isAuth && <Redirect to="/" />}
+    <div>
+      {isAuth && <Redirect to='/' />}
       <form onSubmit={formik.handleSubmit}>
         <TextField
           fullWidth
-          id="email"
-          name="email"
-          label="Email"
-          type="email"
+          id='email'
+          name='email'
+          label='Email'
+          type='email'
           value={formik.values.email}
           placeholder={formik.values.email}
           onChange={formik.handleChange}
@@ -52,10 +61,10 @@ const AuthForm = ({ type }) => {
         />
         <TextField
           fullWidth
-          id="password"
-          name="password"
-          label="Password"
-          type="password"
+          id='password'
+          name='password'
+          label='Password'
+          type='password'
           value={formik.values.password}
           onChange={formik.handleChange}
           error={formik.touched.password && Boolean(formik.errors.password)}
@@ -64,10 +73,10 @@ const AuthForm = ({ type }) => {
         {type === 'signup' && (
           <TextField
             fullWidth
-            id="name"
-            name="name"
-            label="Name"
-            type="name"
+            id='name'
+            name='name'
+            label='Name'
+            type='name'
             onChange={formik.handleChange}
             error={formik.touched.name && Boolean(formik.errors.name)}
             helperText={formik.touched.name && formik.errors.name}
@@ -76,10 +85,10 @@ const AuthForm = ({ type }) => {
         {type === 'signup' && (
           <TextField
             fullWidth
-            id="lastName"
-            name="lastName"
-            label="Last name"
-            type="text"
+            id='lastName'
+            name='lastName'
+            label='Last name'
+            type='text'
             onChange={formik.handleChange}
             error={formik.touched.lastName && Boolean(formik.errors.lastName)}
             helperText={formik.touched.lastName && formik.errors.lastName}
@@ -88,15 +97,15 @@ const AuthForm = ({ type }) => {
         {type === 'signup' && (
           <TextField
             fullWidth
-            id="birthdate"
-            name="birthdate"
-            type="date"
+            id='birthdate'
+            name='birthdate'
+            type='date'
             onChange={formik.handleChange}
             error={formik.touched.birthdate && Boolean(formik.errors.birthdate)}
             helperText={formik.touched.birthdate && formik.errors.birthdate}
           />
         )}
-        <Button color="primary" variant="contained" fullWidth type="submit">
+        <Button color='primary' variant='contained' fullWidth type='submit'>
           Submit
         </Button>
       </form>

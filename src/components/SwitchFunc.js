@@ -9,20 +9,20 @@ import Logout from './Logout';
 import Page404 from './Page404';
 
 export default function SwitchFunc() {
-  const { role } = useSelector((state) => state.userReducers.user);
+  const { role } = useSelector(({ userReducers }) => userReducers.user);
   return (
     <Switch>
       <Route exact path='/'>
         <CardList />
       </Route>
       <Route exact path='/login'>
-        <AuthForm type={'login'} />
+        <AuthForm type='login' />
       </Route>
       <Route exact path='/logout'>
         <Logout />
       </Route>
       <Route exact path='/signup'>
-        <AuthForm type={'signup'} />
+        <AuthForm type='signup' />
       </Route>
       <Route exact path='/info/:id'>
         {role === 'admin' ? (

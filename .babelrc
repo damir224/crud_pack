@@ -1,10 +1,10 @@
 {"presets": [[
-  "@babel/env", 
+  "@babel/env",
   {
     "corejs": 3,
     "useBuiltIns": "usage",
     "debug": true,
-    "modules": false,
+    "modules": false
   }],
   "@babel/react"],
   "plugins": []

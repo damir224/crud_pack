@@ -1,5 +1,7 @@
 import React from 'react';
-import { FormControl, TextField, Box, Button } from '@material-ui/core';
+import {
+  FormControl, TextField, Box, Button,
+} from '@material-ui/core';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -7,7 +9,7 @@ import { addCardSagaAC } from '../store/cards/actions';
 import useStyles from '../helpers/styles/useStylesCard';
 
 export default function AddCard() {
-  const { token } = useSelector((state) => state.userReducers.user);
+  const { token } = useSelector(({ userReducers }) => userReducers.user);
   const dispatch = useDispatch();
   const classes = useStyles();
   const refDone = React.useRef(false);
@@ -16,13 +18,16 @@ export default function AddCard() {
       title: '',
       description: '',
     },
-    onSubmit: async ({ title, description }) => {
+    onSubmit: async ({
+      title,
+      description,
+    }) => {
       await dispatch(
         addCardSagaAC({
           title,
           description,
           token,
-        })
+        }),
       );
       refDone.current = true;
     },
@@ -31,44 +36,44 @@ export default function AddCard() {
   return (
     <Box
       className={classes.root}
-      component="span"
+      component='span'
       m={1}
       style={{ marginTop: '5em' }}
     >
-      {refDone.current && <Redirect to="/" />}
+      {refDone.current && <Redirect to='/' />}
       <div className={classes.container}>
         <form onSubmit={formik.handleSubmit}>
-          <FormControl variant="outlined">
+          <FormControl variant='outlined'>
             <TextField
               fullWidth
-              id="title"
-              name="title"
-              label="Title"
-              type="text"
+              id='title'
+              name='title'
+              label='Title'
+              type='text'
               value={formik.values.title}
-              placeholder="Enter title"
+              placeholder='Enter title'
               onChange={formik.handleChange}
               className={classes.title}
-              variant="outlined"
+              variant='outlined'
             />
             <TextField
               fullWidth
-              id="description"
-              name="description"
-              label="Description"
-              type="text"
+              id='description'
+              name='description'
+              label='Description'
+              type='text'
               value={formik.values.description}
-              placeholder="Enter description"
+              placeholder='Enter description'
               onChange={formik.handleChange}
               className={classes.description}
               multiline
               rows={6}
-              variant="outlined"
+              variant='outlined'
             />
             <Button
               className={classes.button}
-              variant="contained"
-              type="submit"
+              variant='contained'
+              type='submit'
             >
               Save
             </Button>

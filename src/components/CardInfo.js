@@ -13,8 +13,8 @@ import useStyles from '../helpers/styles/useStylesCard';
 
 export default function CardInfo() {
   const { id } = useParams();
-  const token = useSelector((states) => states.userReducers.user.token);
-  const cards = useSelector((states) => states.cardsReducers.cards);
+  const token = useSelector(({ userReducers }) => userReducers.user.token);
+  const cards = useSelector(({ cardsReducers }) => cardsReducers.cards);
   const [redirect, setRedirect] = React.useState(false);
 
   const cardInfo = cards.filter((e) => +e.id === +id)[0];
@@ -32,58 +32,58 @@ export default function CardInfo() {
           description,
           id,
           token,
-        })
+        }),
       );
       setRedirect(true);
     },
   });
 
   return (
-    <Box className={classes.root} component="span" m={1}>
-      {redirect && <Redirect to="/" />}
+    <Box className={classes.root} component='span' m={1}>
+      {redirect && <Redirect to='/' />}
       <div className={classes.container}>
         <form onSubmit={formik.handleSubmit}>
-          <FormControl variant="outlined">
+          <FormControl variant='outlined'>
             <TextField
               fullWidth
-              id="title"
-              name="title"
-              label="Title"
-              type="text"
+              id='title'
+              name='title'
+              label='Title'
+              type='text'
               value={formik.values.title}
-              placeholder="Enter title"
+              placeholder='Enter title'
               onChange={formik.handleChange}
               className={classes.title}
-              variant="outlined"
+              variant='outlined'
             />
             <TextField
               fullWidth
-              id="description"
-              name="description"
-              label="Description"
-              type="text"
+              id='description'
+              name='description'
+              label='Description'
+              type='text'
               value={formik.values.description}
-              placeholder="Enter description"
+              placeholder='Enter description'
               onChange={formik.handleChange}
               className={classes.description}
               multiline
               rows={6}
-              variant="outlined"
+              variant='outlined'
             />
             <div className={classes.buttonGroup}>
               <Button
                 className={classes.button}
-                variant="contained"
-                type="submit"
-                color="primary"
+                variant='contained'
+                type='submit'
+                color='primary'
               >
                 Save
               </Button>
 
               <Button
                 className={classes.button}
-                variant="contained"
-                color="secondary"
+                variant='contained'
+                color='secondary'
                 onClick={() => {
                   dispatch(delCardSagaAC({ id, token }));
                   setRedirect(true);

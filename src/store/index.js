@@ -9,7 +9,7 @@ import {
   addCardWatcher,
   updateCardWatcher,
   delCardWatcher,
-  likeCardWatcher
+  likeCardWatcher,
 } from './cards/saga/watchers';
 import { signupWatcher, loginWatcher } from './user/saga/watchers';
 
@@ -17,7 +17,7 @@ const sagaMiddleware = saga();
 
 const reducers = combineReducers({
   userReducers,
-  cardsReducers
+  cardsReducers,
 });
 
 const composeEnhancer = process.env.NODE_ENV === 'production'
@@ -34,6 +34,6 @@ sagaMiddleware.run(function* () {
     delCardWatcher(),
     likeCardWatcher(),
     signupWatcher(),
-    loginWatcher()
+    loginWatcher(),
   ]);
 });

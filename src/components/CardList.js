@@ -11,9 +11,9 @@ export default function CardList() {
   const dispatch = useDispatch();
   const classes = useStyles();
   const { token, role, isAuth } = useSelector(
-    (state) => state.userReducers.user
+    ({ userReducers }) => userReducers.user,
   );
-  const { cards } = useSelector((state) => state.cardsReducers);
+  const { cards } = useSelector(({ cardsReducers }) => cardsReducers);
   const [cardListArr, setCardListArr] = React.useState([]);
   useEffect(() => {
     dispatch(getCardsSagaAC(token));
@@ -25,7 +25,7 @@ export default function CardList() {
   return (
     <>
       {cardListArr.length !== 0 && (
-        <Typography variant="h2" align="center" style={{ marginTop: '1em' }}>
+        <Typography variant='h2' align='center' style={{ marginTop: '1em' }}>
           Card List
         </Typography>
       )}
@@ -40,11 +40,11 @@ export default function CardList() {
             }}
           >
             <Link
-              to="/create"
+              to='/create'
               style={{ textDecoration: 'none', color: 'black' }}
             >
               <div style={{ display: 'flex' }}>
-                <AddBoxIcon fontSize="large" />
+                <AddBoxIcon fontSize='large' />
               </div>
             </Link>
           </Card>
@@ -52,7 +52,7 @@ export default function CardList() {
         {cardListArr.length && isAuth ? (
           cardListArr.map((e) => <SimpleCard key={e.id} card={e} />)
         ) : (
-          <Typography variant="h4">
+          <Typography variant='h4'>
             Sorry! You need to be logged in to access this page.
           </Typography>
         )}

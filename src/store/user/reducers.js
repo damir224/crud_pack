@@ -1,6 +1,6 @@
 import actionTypes from '../actionTypes';
 
-const preloadableState = {
+const initialState = {
   user: {
     birthdate: '',
     email: '',
@@ -12,22 +12,22 @@ const preloadableState = {
     isAuth: false,
   },
 };
-const userReducers = (state = preloadableState, action) => {
+const userReducers = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOGIN_AUTH:
       return {
         ...state,
         user: {
           isAuth: true,
-          ...action.payload
-        }
+          ...action.payload,
+        },
       };
     case actionTypes.LOGOUT_AUTH:
       return {
         ...state,
         user: {
-          ...preloadableState.user
-        }
+          ...initialState.user,
+        },
       };
     default:
       return state;

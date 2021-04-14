@@ -1,9 +1,8 @@
-import { makeStyles } from '@material-ui/core/';
+import { makeStyles } from '@material-ui/core';
 
 const width = 300;
 const useStyles = makeStyles({
   root: {
-    marginTop: '5em',
     display: 'flex',
     justifyContent: 'space-between',
     flexWrap: 'wrap',
