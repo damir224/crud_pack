@@ -23,7 +23,6 @@ export function* signupWorker({ payload }) {
   }
 }
 export function* loginWorker({ payload }) {
-  console.log(process.env.REACT_APP_URL);
   const url = `${process.env.REACT_APP_URL}login`;
   const urlAuth = `${process.env.REACT_APP_URL}user`;
   try {
